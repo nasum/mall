@@ -6,8 +6,6 @@ body {
   height: 100%;
 }
 
-webview {
-  border: none;
+#app {
   height: 100%;
-  width: 100%;
 }
