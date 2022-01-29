@@ -5,7 +5,9 @@ export default function App() {
   return (
     <>
       <Base>
-        <h1>Hello, world!</h1>
+        <div className="container mx-auto max-w-full h-full bg-white">
+          <h1>Hello, world!</h1>
+        </div>
       </Base>
       <webview style={WebViewStyle} src="https://electronjs.org"></webview>
     </>

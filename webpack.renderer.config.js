@@ -8,7 +8,14 @@ rules.push({
 
 module.exports = {
   module: {
-    rules,
+    rules: [
+      ...rules,
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ['postcss-loader'],
+      },
+    ],
   },
   plugins: plugins,
   resolve: {
