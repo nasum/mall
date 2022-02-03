@@ -1,23 +1,27 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import URLForm from './URLForm'
+import Websites from './Websites'
+import { Website } from './types'
 
 export default function App() {
+  const [websites, setWebsite] = useState<Website[]>([])
+
+  function handleSetWebsite(website: string) {
+    setWebsite([...websites, { url: website }])
+  }
+
   return (
     <>
-      <div className="container mx-auto max-w-full h-full bg-white">
-        <h1>Hello, world!</h1>
+      <div className="container mx-auto max-w-full h-full bg-white p-5">
+        <h1 className="text-2xl">Mall</h1>
+        <p>Enter your favorite website.</p>
+        <p>
+          <URLForm handleSetWebsite={handleSetWebsite} />
+        </p>
+        <p>
+          <Websites sites={websites} />
+        </p>
       </div>
     </>
   )
-}
-
-const Base = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-`
-const WebViewStyle = {
-  border: 'none',
-  height: '100%',
-  width: '100%',
 }
