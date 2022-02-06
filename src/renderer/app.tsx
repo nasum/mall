@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { ContextBridge } from '../preload/index'
+import { Website } from '../preload/types'
+
 import URLForm from './URLForm'
 import Websites from './Websites'
-import { Website } from './types'
+
+// eslint-disable-next-line
+// @ts-ignore
+const api: ContextBridge = window.api
 
 export default function App() {
   const [websites, setWebsite] = useState<Website[]>([])
 
   function handleSetWebsite(website: string) {
+    api.setWebsite(website)
     setWebsite([...websites, { url: website }])
   }
+
+  useEffect(() => {
+    ;(async () => {
+      const rows: Website[] = await api.getWebsites()
+      setWebsite(rows)
+    })()
+  }, [websites])
 
   return (
     <>
